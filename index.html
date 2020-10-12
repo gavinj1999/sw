@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Blank HTML5</title>
+<style>
+</style>
+    </head>
+    <body>
+
+        <button onclick="subscribe()">Subscribe</button>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script>
+addEventListener('load', async () => {
+    let sw = await navigator.serviceWorker.register('./sw.js')
+    console.log(sw)
+})
+
+async function subscribe(){
+    let sw = await navigator.serviceWorker.ready;
+    let push = await sw.pushManager.subscribe({
+        userVisibleOnly:true,
+        applicationServerKey: 'BAvdqKP7orkaot9_i--QYlACMr1o0jnlPEdp7WspKbAWDHYP6Xct46JZ5_XXgw5tejPXFB9WdKVLneccPvacJZw'
+    })
+    console.log(JSON.stringify(push))
+}
+</script>
+    </body>
+</html>
